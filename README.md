@@ -2,11 +2,10 @@
 
 ### What is this repository for?
 
-- Concurrent Computing (COMS20001)
-- Josh Hamwee & Aidan Hood's Coursework for Term 1
-- Josh Hamwee's Coursework for Term 2
+- Symbols Patterns and Signals over TB2
+- Josh Hamwee & Aidan Hood's Coursework Tern 2.2
+- Josh Hamwee's Coursework for Term 2.1
 
 ### What is covered in the repository?
 
-- We explore using xC, an extended version of c that supports Concurrent Computing.
-- We also explore at creating a kernel in C
+We explore using python, the first coursework was using it to create a Least Squares Regression program.
