@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73aa7336-8e6b-4ed8-ad4e-fc0234a9dddb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/.ipynb_checkpoints/labsheet5-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/iris_scatter_plots.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/iris_test.csv" beforeDir="false" />
@@ -34,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/animation_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -67,6 +68,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1920" />
     <option name="y" value="24" />
     <option name="width" value="1662" />
     <option name="height" value="1027" />
@@ -80,10 +82,6 @@
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="SafeSubmissions" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SafeSubmissions" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="SafeSubmissions" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
@@ -237,7 +235,7 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1662" height="1027" extended-state="0" />
+    <frame x="-1920" y="24" width="1662" height="1027" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25045705" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -268,57 +266,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Coursework_1/utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Coursework_1/crypto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Coursework_1/prb021_687526cf4bae6163bda62da241694a42.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="53" column="24" lean-forward="true" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Coursework_1/binsearch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="70" column="25" lean-forward="true" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Coursework_1/morenumbersBAE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="92" column="36" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="36" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Coursework_1/utilities.py" />
+    <entry file="file://$PROJECT_DIR$/Coursework_1/crypto.py" />
+    <entry file="file://$PROJECT_DIR$/Coursework_1/prb021_687526cf4bae6163bda62da241694a42.py" />
+    <entry file="file://$PROJECT_DIR$/Coursework_1/binsearch.py" />
+    <entry file="file://$PROJECT_DIR$/Coursework_1/morenumbersBAE.py" />
     <entry file="file://$PROJECT_DIR$/animation_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
