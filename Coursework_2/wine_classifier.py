@@ -17,7 +17,7 @@ from utilities import load_data, print_features, print_predictions
 # By default we set figures to be 12"x8" on a 110 dots per inch (DPI) screen
 # (adjust DPI if you have a high res screen!)
 plt.rc('figure', figsize=(12, 8), dpi=110)
-plt.rc('font', size=12)
+plt.rc('font', size=6)
 
 # you may use these colours to produce the scatter plots
 CLASS_1_C = r'#3366ff'
@@ -30,7 +30,7 @@ MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
 
 def feature_selection(train_set, train_labels, **kwargs):
     n_features = train_set.shape[1]
-    fig, axarray = plt.subplots(n_features, n_features)
+    fig, axarray = plt.subplots(7, 7)
     plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.1, hspace=0.2)
 
     colours = np.zeros_like(train_labels, dtype = np.object)
@@ -38,13 +38,11 @@ def feature_selection(train_set, train_labels, **kwargs):
     colours[train_labels == 2] = CLASS_2_C
     colours[train_labels == 3] = CLASS_3_C
 
-    for i in range(0,n_features):
-        for j in range(0,n_features):
+    for i in range(0,7):
+        for j in range(0,7):
             axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
             axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
-
     plt.show()
-    return [1,2]
 
 
 def knn(train_set, train_labels, test_set, k, **kwargs):
