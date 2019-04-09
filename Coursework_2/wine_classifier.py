@@ -44,6 +44,8 @@ def feature_selection(train_set, train_labels, **kwargs):
             axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
     plt.show()
 
+    return[7,10]
+
 
 def knn(train_set, train_labels, test_set, k, **kwargs):
     # write your code here and make sure you return the predictions at the end of
