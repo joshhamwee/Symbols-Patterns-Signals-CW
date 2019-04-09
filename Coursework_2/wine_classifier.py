@@ -30,16 +30,16 @@ MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
 
 def feature_selection(train_set, train_labels, **kwargs):
     n_features = train_set.shape[1]
-    fig, axarray = plt.subplots(7, 7)
-    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.1, hspace=0.2)
+    fig, axarray = plt.subplots(n_features, n_features)
+    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
 
     colours = np.zeros_like(train_labels, dtype = np.object)
     colours[train_labels == 1] = CLASS_1_C
     colours[train_labels == 2] = CLASS_2_C
     colours[train_labels == 3] = CLASS_3_C
 
-    for i in range(0,7):
-        for j in range(0,7):
+    for i in range(0,13):
+        for j in range(0,13):
             axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
             axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
     plt.show()
