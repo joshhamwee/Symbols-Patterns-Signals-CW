@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68ae60-cd19-4b22-a151-fa87c9a19b75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../SafeSubmissions/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SafeSubmissions/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SafeSubmissions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SafeSubmissions/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/.ipynb_checkpoints/labsheet5-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/iris_scatter_plots.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_5/iris_test.csv" beforeDir="false" />
@@ -23,7 +21,6 @@
       <change beforePath="$PROJECT_DIR$/../lab_7/labsheets7.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_7/pca.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_7/pca_comparison.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_sheets_public-master/lab_7/labsheets7.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_sheets_public-master/lab_7/labsheets7.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wine_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+            <state relative-caret-position="612">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#246#283#0" expanded="true" />
               </folding>
@@ -108,7 +105,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1662" height="1027" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24984765" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -134,8 +130,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wine_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+        <state relative-caret-position="612">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#246#283#0" expanded="true" />
           </folding>

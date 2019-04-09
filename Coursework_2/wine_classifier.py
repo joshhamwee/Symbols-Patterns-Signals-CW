@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Skeleton code for CW2 submission. 
+Skeleton code for CW2 submission.
 We suggest you implement your code in the provided functions
 Make sure to use our print_features() and print_predictions() functions
 to print your results
@@ -14,40 +14,59 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utilities import load_data, print_features, print_predictions
 
+# By default we set figures to be 12"x8" on a 110 dots per inch (DPI) screen
+# (adjust DPI if you have a high res screen!)
+plt.rc('figure', figsize=(12, 8), dpi=110)
+plt.rc('font', size=12)
+
 # you may use these colours to produce the scatter plots
 CLASS_1_C = r'#3366ff'
 CLASS_2_C = r'#cc3300'
 CLASS_3_C = r'#ffc34d'
+class_colours = [CLASS_1_C, CLASS_2_C, CLASS_3_C]
 
-MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']    
+MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
 
 
 def feature_selection(train_set, train_labels, **kwargs):
-    # write your code here and make sure you return the features at the end of 
-    # the function
-    return []
+    n_features = train_set.shape[1]
+    fig, axarray = plt.subplots(n_features, n_features)
+    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.1, hspace=0.2)
+
+    colours = np.zeros_like(train_labels, dtype = np.object)
+    colours[train_labels == 1] = CLASS_1_C
+    colours[train_labels == 2] = CLASS_2_C
+    colours[train_labels == 3] = CLASS_3_C
+
+    for i in range(0,n_features):
+        for j in range(0,n_features):
+            axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
+            axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
+
+    plt.show()
+    return [1,2]
 
 
 def knn(train_set, train_labels, test_set, k, **kwargs):
-    # write your code here and make sure you return the predictions at the end of 
+    # write your code here and make sure you return the predictions at the end of
     # the function
     return []
 
 
 def alternative_classifier(train_set, train_labels, test_set, **kwargs):
-    # write your code here and make sure you return the predictions at the end of 
+    # write your code here and make sure you return the predictions at the end of
     # the function
     return []
 
 
 def knn_three_features(train_set, train_labels, test_set, k, **kwargs):
-    # write your code here and make sure you return the predictions at the end of 
+    # write your code here and make sure you return the predictions at the end of
     # the function
     return []
 
 
 def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
-    # write your code here and make sure you return the predictions at the end of 
+    # write your code here and make sure you return the predictions at the end of
     # the function
     return []
 
@@ -60,18 +79,18 @@ def parse_args():
     parser.add_argument('--train_labels_path', nargs='?', type=str, default='data/wine_train_labels.csv', help='Path to training labels')
     parser.add_argument('--test_set_path', nargs='?', type=str, default='data/wine_test.csv', help='Path to the test set csv')
     parser.add_argument('--test_labels_path', nargs='?', type=str, default='data/wine_test_labels.csv', help='Path to the test labels csv')
-    
+
     args = parser.parse_args()
     mode = args.mode[0]
-    
+
     return args, mode
 
 
 if __name__ == '__main__':
     args, mode = parse_args() # get argument from the command line
-    
+
     # load the data
-    train_set, train_labels, test_set, test_labels = load_data(train_set_path=args.train_set_path, 
+    train_set, train_labels, test_set, test_labels = load_data(train_set_path=args.train_set_path,
                                                                        train_labels_path=args.train_labels_path,
                                                                        test_set_path=args.test_set_path,
                                                                        test_labels_path=args.test_labels_path)
