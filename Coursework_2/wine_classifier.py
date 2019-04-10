@@ -29,28 +29,53 @@ MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
 
 
 def feature_selection(train_set, train_labels, **kwargs):
-    n_features = train_set.shape[1]
-    fig, axarray = plt.subplots(n_features, n_features)
-    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
-
-    colours = np.zeros_like(train_labels, dtype = np.object)
-    colours[train_labels == 1] = CLASS_1_C
-    colours[train_labels == 2] = CLASS_2_C
-    colours[train_labels == 3] = CLASS_3_C
-
-    for i in range(0,13):
-        for j in range(0,13):
-            axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
-            axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
-    plt.show()
+    # n_features = train_set.shape[1]
+    # fig, axarray = plt.subplots(n_features, n_features)
+    # plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
+    #
+    # colours = np.zeros_like(train_labels, dtype = np.object)
+    # colours[train_labels == 1] = CLASS_1_C
+    # colours[train_labels == 2] = CLASS_2_C
+    # colours[train_labels == 3] = CLASS_3_C
+    #
+    # for i in range(0,13):
+    #     for j in range(0,13):
+    #         axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
+    #         axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
+    # plt.show()
 
     return[7,10]
 
 
 def knn(train_set, train_labels, test_set, k, **kwargs):
-    # write your code here and make sure you return the predictions at the end of
-    # the function
-    return []
+    features = feature_selection(train_set, train_labels)
+    train_set_reduced = train_set[:,[features[0],features[1]]]
+    test_set_reduced = test_set[:,[features[0],features[1]]]
+    predictions = []
+
+    #Loop over all the values in the test set and make a prediction for each one
+    for i in range(np.shape(test_set_reduced)[0]):
+        distances = []
+        klabels = []
+        #Iterate over all the values in the train set and find the euclidian distance to the current value we are predicting for each one
+        for j in range(np.shape(train_set_reduced)[0]):
+            distances.append([np.sqrt(np.sum(np.square(test_set_reduced[i] - train_set_reduced[j]))), j])
+
+        #Sort the distances
+        distances = sorted(distances)
+
+        #Take the value of the labels for the k smallest distances
+        for x in range(k):
+            klabels.append(train_labels[distances[x][1]])
+
+        #Function taken from online
+        #Finds the most occuring element in a list
+        def most_frequent(List):
+            return max(set(List), key = List.count)
+
+        predictions.append(most_frequent(klabels))
+
+    return predictions
 
 
 def alternative_classifier(train_set, train_labels, test_set, **kwargs):
