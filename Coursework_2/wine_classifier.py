@@ -155,10 +155,52 @@ def alternative_classifier(train_set, train_labels, test_set, **kwargs):
     return []
 
 
-def knn_three_features(train_set, train_labels, test_set, k, **kwargs):
-    # write your code here and make sure you return the predictions at the end of
-    # the function
-    return []
+def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwargs):
+    """
+    Uses knn three features classifier to return a predicted set of labels for the test set
+    Uncomment the accuracy/confusion code at the bottom if required
+
+    Args:
+        -train_set
+        -train_labels
+        -test_set
+        -"test_labels": Only added this to calculate the accuracy of our algorithm
+        -k: number of neighbours to calculate the labels
+    """
+
+    features = feature_selection(train_set, train_labels)
+    train_set_reduced = train_set[:,[features[0]-1,features[1]-1, 9]]
+    print(train_set_reduced)
+    test_set_reduced = test_set[:,[features[0]-1,features[1]-1,9]]
+    predictions = []
+
+    #Loop over all the values in the test set and make a prediction for each one
+    for i in range(np.shape(test_set_reduced)[0]):
+        distances = []
+        klabels = []
+        #Iterate over all the values in the train set and find the euclidian distance to the current value we are predicting for each one
+        for j in range(np.shape(train_set_reduced)[0]):
+            distances.append([np.sqrt(np.sum(np.square(test_set_reduced[i] - train_set_reduced[j]))), j])
+
+        #Sort the distances
+        distances = sorted(distances)
+
+        #Take the value of the labels for the k smallest distances
+        for x in range(k):
+            klabels.append(train_labels[distances[x][1]])
+
+        #Function taken from online
+        #Finds the most occuring element in a list
+        def most_frequent(List):
+            return max(set(List), key = List.count)
+
+        predictions.append(most_frequent(klabels))
+
+    accuracy = calculate_accuracy(test_labels, predictions)
+    matrix = calculate_confusion_matrix(test_labels, predictions)
+    plot_matrix(matrix)
+    print(accuracy)
+    return predictions
 
 
 def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
@@ -200,7 +242,7 @@ if __name__ == '__main__':
         predictions = alternative_classifier(train_set, train_labels, test_set)
         print_predictions(predictions)
     elif mode == 'knn_3d':
-        predictions = knn_three_features(train_set, train_labels, test_set, args.k)
+        predictions = knn_three_features(train_set, train_labels, test_set,test_labels, args.k)
         print_predictions(predictions)
     elif mode == 'knn_pca':
         prediction = knn_pca(train_set, train_labels, test_set, args.k)
