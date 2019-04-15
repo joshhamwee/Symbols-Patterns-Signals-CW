@@ -27,8 +27,63 @@ class_colours = [CLASS_1_C, CLASS_2_C, CLASS_3_C]
 
 MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
 
+def calculate_accuracy(gt_labels, pred_labels):
+    accuracy_counter = 0
+    for i in range(0,len(gt_labels)):
+        if gt_labels[i] == pred_labels[i]:
+            accuracy_counter += 1
+        else:
+            continue
+    accuracy = (accuracy_counter/len(gt_labels))*100
+    return accuracy
+
+def calculate_confusion_matrix(gt_labels, pred_labels):
+    k = len(np.unique(gt_labels))
+    matrix = np.zeros([k,k])
+    for i in range(len(gt_labels)):
+        matrix[gt_labels[i]-1][pred_labels[i]-1] += 1
+    for i in range(k):
+        sum_row = matrix[i][0] + matrix[i][1] + matrix[i][2]
+        for j in range(k):
+            matrix[i][j] = matrix[i][j]/sum_row
+    return matrix
+
+def plot_matrix(matrix, ax=None):
+    """
+    Displays a given matrix as an image.
+
+    Args:
+        - matrix: the matrix to be displayed
+        - ax: the matplotlib axis where to overlay the plot.
+          If you create the figure with `fig, fig_ax = plt.subplots()` simply pass `ax=fig_ax`.
+          If you do not explicitily create a figure, then pass no extra argument.
+          In this case the  current axis (i.e. `plt.gca())` will be used
+    """
+    if ax is None:
+        ax = plt.gca()
+
+    #Colourscheme
+    mappable = plt.get_cmap('summer')
+
+    #Plotted matrix with colourbar & text
+    img1 = ax.imshow(matrix, cmap=mappable)
+    plt.colorbar(img1)
+    plt.title("Confusion Matrix")
+
+    size = np.shape(matrix)
+    for i in range(size[0]):
+        for j in range(size[1]):
+            ax.text(i, j, matrix[j][i])
+    plt.show()
+
 
 def feature_selection(train_set, train_labels, **kwargs):
+    """
+    Returns the two features which from our eyes we have decided look the best to classify the wines
+
+    To view the graphs in which we used to select the features, then uncomment the code below
+    """
+
     # n_features = train_set.shape[1]
     # fig, axarray = plt.subplots(n_features, n_features)
     # plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
@@ -47,10 +102,22 @@ def feature_selection(train_set, train_labels, **kwargs):
     return[7,10]
 
 
-def knn(train_set, train_labels, test_set, k, **kwargs):
+def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
+    """
+    Uses knn classifier to return a predicted set of labels for the test set
+    Uncomment the accuracy/confusion code at the bottom if required
+
+    Args:
+        -train_set
+        -train_labels
+        -test_set
+        -"test_labels": Only added this to calculate the accuracy of our algorithm
+        -k: number of neighbours to calculate the labels
+    """
+
     features = feature_selection(train_set, train_labels)
-    train_set_reduced = train_set[:,[features[0],features[1]]]
-    test_set_reduced = test_set[:,[features[0],features[1]]]
+    train_set_reduced = train_set[:,[features[0]-1,features[1]-1]]
+    test_set_reduced = test_set[:,[features[0]-1,features[1]-1]]
     predictions = []
 
     #Loop over all the values in the test set and make a prediction for each one
@@ -75,6 +142,10 @@ def knn(train_set, train_labels, test_set, k, **kwargs):
 
         predictions.append(most_frequent(klabels))
 
+    accuracy = calculate_accuracy(test_labels, predictions)
+    matrix = calculate_confusion_matrix(test_labels, predictions)
+    plot_matrix(matrix)
+    print(accuracy)
     return predictions
 
 
@@ -123,7 +194,7 @@ if __name__ == '__main__':
         selected_features = feature_selection(train_set, train_labels)
         print_features(selected_features)
     elif mode == 'knn':
-        predictions = knn(train_set, train_labels, test_set, args.k)
+        predictions = knn(train_set, train_labels, test_set, test_labels, args.k)
         print_predictions(predictions)
     elif mode == 'alt':
         predictions = alternative_classifier(train_set, train_labels, test_set)
