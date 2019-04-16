@@ -24,12 +24,12 @@ CLASS_1_C = r'#3366ff'
 CLASS_2_C = r'#cc3300'
 CLASS_3_C = r'#ffc34d'
 class_colours = [CLASS_1_C, CLASS_2_C, CLASS_3_C]
-
 MODES = ['feature_sel', 'knn', 'alt', 'knn_3d', 'knn_pca']
+
 
 def calculate_accuracy(gt_labels, pred_labels):
     accuracy_counter = 0
-    for i in range(0,len(gt_labels)):
+    for i in range(0, len(gt_labels)):
         if gt_labels[i] == pred_labels[i]:
             accuracy_counter += 1
         else:
@@ -37,9 +37,10 @@ def calculate_accuracy(gt_labels, pred_labels):
     accuracy = (accuracy_counter/len(gt_labels))*100
     return accuracy
 
+
 def calculate_confusion_matrix(gt_labels, pred_labels):
     k = len(np.unique(gt_labels))
-    matrix = np.zeros([k,k])
+    matrix = np.zeros([k, k])
     for i in range(len(gt_labels)):
         matrix[gt_labels[i]-1][pred_labels[i]-1] += 1
     for i in range(k):
@@ -47,6 +48,7 @@ def calculate_confusion_matrix(gt_labels, pred_labels):
         for j in range(k):
             matrix[i][j] = matrix[i][j]/sum_row
     return matrix
+
 
 def plot_matrix(matrix, ax=None):
     """
@@ -62,10 +64,10 @@ def plot_matrix(matrix, ax=None):
     if ax is None:
         ax = plt.gca()
 
-    #Colourscheme
+    # Colour-scheme
     mappable = plt.get_cmap('summer')
 
-    #Plotted matrix with colourbar & text
+    # Plotted matrix with colourbar & text
     img1 = ax.imshow(matrix, cmap=mappable)
     plt.colorbar(img1)
     plt.title("Confusion Matrix")
@@ -99,7 +101,7 @@ def feature_selection(train_set, train_labels, **kwargs):
     #         axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
     # plt.show()
 
-    return[7,10]
+    return [6, 9]
 
 
 def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
@@ -115,38 +117,38 @@ def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
         -k: number of neighbours to calculate the labels
     """
 
-    features = feature_selection(train_set, train_labels)
-    train_set_reduced = train_set[:,[features[0]-1,features[1]-1]]
-    test_set_reduced = test_set[:,[features[0]-1,features[1]-1]]
-    predictions = []
+    features = [6, 9]
+    train_set_reduced = train_set[:, [features[0]-1, features[1]-1]]
+    test_set_reduced = test_set[:, [features[0]-1, features[1]-1]]
+    knn_predictions = []
 
-    #Loop over all the values in the test set and make a prediction for each one
+    # Loop over all the values in the test set and make a prediction for each one
     for i in range(np.shape(test_set_reduced)[0]):
         distances = []
-        klabels = []
-        #Iterate over all the values in the train set and find the euclidian distance to the current value we are predicting for each one
+        k_labels = []
+        # Iterate over all the values in the train set and find the euclidian distance to the current value we are predicting for each one
         for j in range(np.shape(train_set_reduced)[0]):
             distances.append([np.sqrt(np.sum(np.square(test_set_reduced[i] - train_set_reduced[j]))), j])
 
-        #Sort the distances
+        # Sort the distances
         distances = sorted(distances)
 
-        #Take the value of the labels for the k smallest distances
+        # Take the value of the labels for the k smallest distances
         for x in range(k):
-            klabels.append(train_labels[distances[x][1]])
+            k_labels.append(train_labels[distances[x][1]])
 
-        #Function taken from online
-        #Finds the most occuring element in a list
-        def most_frequent(List):
-            return max(set(List), key = List.count)
+        # Function taken from online
+        # Finds the most occuring element in a list
+        def most_frequent(list):
+            return max(set(list), key=list.count)
 
-        predictions.append(most_frequent(klabels))
+        knn_predictions.append(most_frequent(k_labels))
 
-    accuracy = calculate_accuracy(test_labels, predictions)
-    matrix = calculate_confusion_matrix(test_labels, predictions)
+    accuracy = calculate_accuracy(test_labels, knn_predictions)
+    matrix = calculate_confusion_matrix(test_labels, knn_predictions)
     plot_matrix(matrix)
     print(accuracy)
-    return predictions
+    return knn_predictions
 
 
 def alternative_classifier(train_set, train_labels, test_set, **kwargs):
@@ -168,7 +170,7 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
         -k: number of neighbours to calculate the labels
     """
 
-    features = feature_selection(train_set, train_labels)
+    features = [6, 9, 12]
     train_set_reduced = train_set[:,[features[0]-1,features[1]-1, 9]]
     print(train_set_reduced)
     test_set_reduced = test_set[:,[features[0]-1,features[1]-1,9]]
