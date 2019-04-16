@@ -118,8 +118,8 @@ def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
     """
 
     features = [6, 9]
-    train_set_reduced = train_set[:, [features[0]-1, features[1]-1]]
-    test_set_reduced = test_set[:, [features[0]-1, features[1]-1]]
+    train_set_reduced = train_set[:, [features[0], features[1]]]
+    test_set_reduced = test_set[:, [features[0], features[1]]]
     knn_predictions = []
 
     # Loop over all the values in the test set and make a prediction for each one
