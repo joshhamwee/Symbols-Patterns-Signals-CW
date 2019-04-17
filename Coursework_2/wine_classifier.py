@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """
 Skeleton code for CW2 submission.
 We suggest you implement your code in the provided functions
@@ -8,7 +9,8 @@ to print your results
 """
 
 from __future__ import print_function
-
+import math
+import sklearn
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -148,13 +150,114 @@ def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
     matrix = calculate_confusion_matrix(test_labels, knn_predictions)
     plot_matrix(matrix)
     print(accuracy)
+
+
     return knn_predictions
 
+def probability(x, mean, std):
 
-def alternative_classifier(train_set, train_labels, test_set, **kwargs):
-    # write your code here and make sure you return the predictions at the end of
-    # the function
-    return []
+    return (1 / (math.sqrt(2*math.pi) * std)) * (math.exp(-(math.pow(x-mean, 2)/(2*math.pow(std, 2)))))
+
+
+
+def alternative_classifier(train_set, train_labels, test_set, test_labels, **kwargs):
+    #Naive Bayes Classifier
+
+    number_of_1 = np.count_nonzero(train_labels == 1)
+    number_of_2 = np.count_nonzero(train_labels == 2)
+    number_of_3 = np.count_nonzero(train_labels == 3)
+
+    columns = np.size(train_set, 1)
+
+    class_1_data = np.zeros((number_of_1, columns))
+    counter_1 = 0
+
+    class_2_data = np.zeros((number_of_2, columns))
+    counter_2 = 0
+
+    class_3_data = np.zeros((number_of_3, columns))
+    counter_3 = 0
+
+
+
+    for i in range(np.size(train_labels)):
+        if train_labels[i] == 1:
+            new_row = train_set[i, :]
+            class_1_data[counter_1] = new_row
+            counter_1 = counter_1 + 1
+
+        elif train_labels[i] == 2:
+            new_row = train_set[i, :]
+            class_2_data[counter_2] = new_row
+            counter_2 = counter_2 + 1
+
+        elif train_labels[i] == 3:
+            new_row = train_set[i, :]
+            class_3_data[counter_3] = new_row
+            counter_3 = counter_3 + 1
+
+    feature_1, feature_2 = feature_selection(train_set, train_labels)
+
+    means_1 = class_1_data.mean(axis=0)
+    feature_1_class_1_mean = means_1[feature_1]
+    feature_2_class_1_mean = means_1[feature_2]
+
+    means_2 = class_2_data.mean(axis=0)
+    feature_1_class_2_mean = means_2[feature_1]
+    feature_2_class_2_mean = means_2[feature_2]
+
+    means_3 = class_3_data.mean(axis=0)
+    feature_1_class_3_mean = means_3[feature_1]
+    feature_2_class_3_mean = means_3[feature_2]
+
+    SD_1 = class_1_data.std(axis=0)
+    feature_1_class_1_SD = SD_1[feature_1]
+    feature_2_class_1_SD = SD_1[feature_2]
+
+
+    SD_2 = class_2_data.std(axis=0)
+    feature_1_class_2_SD = SD_2[feature_1]
+    feature_2_class_2_SD = SD_2[feature_2]
+
+    SD_3 = class_3_data.std(axis=0)
+    feature_1_class_3_SD = SD_3[feature_1]
+    feature_2_class_3_SD = SD_3[feature_2]
+
+    bayes_predictions =[]
+
+    for i in range(np.size(test_labels)):
+        sample_feature_1 = test_set[i, feature_1]
+        sample_feature_2 = test_set[i, feature_2]
+
+        prob_class_1_feature_1 = probability(sample_feature_1, feature_1_class_1_mean, feature_1_class_1_SD)
+        prob_class_1_feature_2 = probability(sample_feature_2, feature_2_class_1_mean, feature_2_class_1_SD)
+        total_prob_class_1 = prob_class_1_feature_1*prob_class_1_feature_2
+
+        prob_class_2_feature_1 = probability(sample_feature_1, feature_1_class_2_mean, feature_1_class_2_SD)
+        prob_class_2_feature_2 = probability(sample_feature_2, feature_2_class_2_mean, feature_2_class_2_SD)
+        total_prob_class_2 = prob_class_2_feature_1 * prob_class_2_feature_2
+
+        prob_class_3_feature_1 = probability(sample_feature_1, feature_1_class_3_mean, feature_1_class_3_SD)
+        prob_class_3_feature_2 = probability(sample_feature_2, feature_2_class_3_mean, feature_2_class_3_SD)
+        total_prob_class_3 = prob_class_3_feature_1 * prob_class_3_feature_2
+
+        if max(total_prob_class_1,total_prob_class_2,total_prob_class_3) == total_prob_class_1:
+            bayes_predictions.append(1)
+        elif max(total_prob_class_1,total_prob_class_2,total_prob_class_3) == total_prob_class_2:
+            bayes_predictions.append(2)
+        elif max(total_prob_class_1, total_prob_class_2, total_prob_class_3) == total_prob_class_3:
+            bayes_predictions.append(3)
+
+
+
+    bayes_accuracy = calculate_accuracy(test_labels, bayes_predictions)
+    print(bayes_accuracy)
+
+    bayes_matrix = calculate_confusion_matrix(test_labels, bayes_predictions)
+    plot_matrix(bayes_matrix)
+
+    return bayes_predictions
+
 
 
 def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwargs):
@@ -241,7 +344,7 @@ if __name__ == '__main__':
         predictions = knn(train_set, train_labels, test_set, test_labels, args.k)
         print_predictions(predictions)
     elif mode == 'alt':
-        predictions = alternative_classifier(train_set, train_labels, test_set)
+        predictions = alternative_classifier(train_set, train_labels, test_set, test_labels)
         print_predictions(predictions)
     elif mode == 'knn_3d':
         predictions = knn_three_features(train_set, train_labels, test_set,test_labels, args.k)
