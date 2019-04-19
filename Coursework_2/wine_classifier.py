@@ -10,11 +10,12 @@ to print your results
 
 from __future__ import print_function
 import math
-import sklearn
+import sklearn.decomposition
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 from utilities import load_data, print_features, print_predictions
+from sklearn.decomposition import PCA
 
 # By default we set figures to be 12"x8" on a 110 dots per inch (DPI) screen
 # (adjust DPI if you have a high res screen!)
@@ -275,7 +276,6 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
 
     features = [6, 9, 12]
     train_set_reduced = train_set[:,[features[0]-1,features[1]-1, 9]]
-    print(train_set_reduced)
     test_set_reduced = test_set[:,[features[0]-1,features[1]-1,9]]
     predictions = []
 
@@ -309,9 +309,60 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
 
 
 def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
-    # write your code here and make sure you return the predictions at the end of
-    # the function
-    return []
+
+    pca = PCA(n_components)
+    pca.fit(train_set)
+    train_set_reduced = pca.fit_transform(train_set)
+
+    # PLOTS PCA TRAINING SET GRAPH
+    # fig, ax = plt.subplots()
+    # plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
+    #
+    # colours = np.zeros_like(train_labels, dtype = np.object)
+    # colours[train_labels == 1] = CLASS_1_C
+    # colours[train_labels == 2] = CLASS_2_C
+    # colours[train_labels == 3] = CLASS_3_C
+    #
+    # ax.scatter(training_reduced[:, 0],training_reduced[:, 1], c=colours)
+    # ax.set_title('PCA')
+    # ax.set_aspect('equal')
+    # plt.show()
+
+    test_set_reduced = pca.transform(test_set)
+    # test_set_reduced[:, 1] *= -1
+
+    pca_predictions =[]
+
+    # Loop over all the values in the test set and make a prediction for each one
+    for i in range(np.shape(test_set_reduced)[0]):
+        distances = []
+        k_labels = []
+        # Iterate over all the values in the train set and find the euclidian distance to the current value we are predicting for each one
+        for j in range(np.shape(train_set_reduced)[0]):
+            distances.append([np.sqrt(np.sum(np.square(test_set_reduced[i] - train_set_reduced[j]))), j])
+
+        # Sort the distances
+        distances = sorted(distances)
+
+        # Take the value of the labels for the k smallest distances
+        for x in range(k):
+            k_labels.append(train_labels[distances[x][1]])
+
+        # Function taken from online
+        # Finds the most occuring element in a list
+        def most_frequent(list):
+            return max(set(list), key=list.count)
+
+        pca_predictions.append(most_frequent(k_labels))
+
+    accuracy = calculate_accuracy(test_labels, pca_predictions)
+    matrix = calculate_confusion_matrix(test_labels, pca_predictions)
+    plot_matrix(matrix)
+    print(accuracy)
+
+    return pca_predictions
+
+
 
 
 def parse_args():
