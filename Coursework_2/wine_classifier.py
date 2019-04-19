@@ -10,7 +10,6 @@ to print your results
 
 from __future__ import print_function
 import math
-import sklearn.decomposition
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -274,9 +273,9 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
         -k: number of neighbours to calculate the labels
     """
 
-    features = [6, 9, 12]
-    train_set_reduced = train_set[:,[features[0]-1,features[1]-1, 9]]
-    test_set_reduced = test_set[:,[features[0]-1,features[1]-1,9]]
+    knn3_features = [6, 9, 12]
+    train_set_reduced = train_set[:,[knn3_features[0],knn3_features[1], knn3_features[2]]]
+    test_set_reduced = test_set[:,[knn3_features[0],knn3_features[1],knn3_features[2]]]
     predictions = []
 
     #Loop over all the values in the test set and make a prediction for each one
@@ -305,6 +304,13 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
     matrix = calculate_confusion_matrix(test_labels, predictions)
     plot_matrix(matrix)
     print(accuracy)
+
+    # knn = KNeighborsClassifier(n_neighbors=k)
+    # knn.fit(train_set_reduced,train_labels)
+    # pred = knn.predict(test_set_reduced)
+    # acc = calculate_accuracy(test_labels,pred)
+    # print(acc)
+
     return predictions
 
 
