@@ -13,6 +13,9 @@ import math
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+
 from utilities import load_data, print_features, print_predictions
 from sklearn.decomposition import PCA
 
@@ -151,6 +154,11 @@ def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
     plot_matrix(matrix)
     print(accuracy)
 
+    # knn = KNeighborsClassifier(n_neighbors=k)
+    # knn.fit(train_set_reduced,train_labels)
+    # pred = knn.predict(test_set_reduced)
+    # acc = calculate_accuracy(test_labels,pred)
+    # print(acc)
 
     return knn_predictions
 
@@ -255,6 +263,12 @@ def alternative_classifier(train_set, train_labels, test_set, test_labels, **kwa
 
     bayes_matrix = calculate_confusion_matrix(test_labels, bayes_predictions)
     plot_matrix(bayes_matrix)
+
+    # gnb = GaussianNB()
+    # gnb.fit(train_set[:,[6,9]], train_labels)
+    # predi = gnb.predict(test_set[:,[6,9]])
+    # acc = calculate_accuracy(test_labels, predi)
+    # print(acc)
 
     return bayes_predictions
 
@@ -365,6 +379,12 @@ def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
     matrix = calculate_confusion_matrix(test_labels, pca_predictions)
     plot_matrix(matrix)
     print(accuracy)
+
+    # knn = KNeighborsClassifier(n_neighbors=k)
+    # knn.fit(train_set_reduced,train_labels)
+    # pred = knn.predict(test_set_reduced)
+    # acc = calculate_accuracy(test_labels,pred)
+    # print(acc)
 
     return pca_predictions
 
