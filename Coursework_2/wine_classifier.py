@@ -91,19 +91,21 @@ def feature_selection(train_set, train_labels, **kwargs):
     To view the graphs in which we used to select the features, then uncomment the code below
     """
 
-    # n_features = train_set.shape[1]
-    # fig, axarray = plt.subplots(n_features, n_features)
-    # plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
-    #
-    # colours = np.zeros_like(train_labels, dtype = np.object)
-    # colours[train_labels == 1] = CLASS_1_C
-    # colours[train_labels == 2] = CLASS_2_C
-    # colours[train_labels == 3] = CLASS_3_C
-    #
-    # for i in range(0,13):
-    #     for j in range(0,13):
-    #         axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
-    #         axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
+    n_features = train_set.shape[1]
+    fig, ax = plt.subplots()
+    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
+
+    colours = np.zeros_like(train_labels, dtype = np.object)
+    colours[train_labels == 1] = CLASS_1_C
+    colours[train_labels == 2] = CLASS_2_C
+    colours[train_labels == 3] = CLASS_3_C
+
+    # # for i in range(6,9):
+    # #     for j in range(6,9):
+    # #         axarray[i,j].scatter(train_set[:, i],train_set[:, j], c = colours)
+    # #         axarray[i,j].set_title('Features {} vs {}'.format(i+1,j+1))
+    # ax.scatter(train_set[:, 9], train_set[:, 12], c=colours, s= 100 )
+    # ax.set_title('Features 10 vs 13')
     # plt.show()
 
     return [6, 9]
@@ -343,7 +345,7 @@ def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
     # colours[train_labels == 2] = CLASS_2_C
     # colours[train_labels == 3] = CLASS_3_C
     #
-    # ax.scatter(training_reduced[:, 0],training_reduced[:, 1], c=colours)
+    # ax.scatter(train_set_reduced[:, 0],train_set_reduced[:, 1], c=colours)
     # ax.set_title('PCA')
     # ax.set_aspect('equal')
     # plt.show()
