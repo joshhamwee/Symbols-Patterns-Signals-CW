@@ -337,18 +337,18 @@ def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
     train_set_reduced = pca.fit_transform(train_set)
 
     # PLOTS PCA TRAINING SET GRAPH
-    fig, ax = plt.subplots()
-    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
-
-    colours = np.zeros_like(train_labels, dtype = np.object)
-    colours[train_labels == 1] = CLASS_1_C
-    colours[train_labels == 2] = CLASS_2_C
-    colours[train_labels == 3] = CLASS_3_C
-
-    ax.scatter(train_set_reduced[:, 0],train_set_reduced[:, 1], c=colours)
-    ax.set_title('PCA')
-    ax.set_aspect('equal')
-    plt.show()
+    # fig, ax = plt.subplots()
+    # plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.2, hspace=0.4)
+    #
+    # colours = np.zeros_like(train_labels, dtype = np.object)
+    # colours[train_labels == 1] = CLASS_1_C
+    # colours[train_labels == 2] = CLASS_2_C
+    # colours[train_labels == 3] = CLASS_3_C
+    #
+    # ax.scatter(train_set_reduced[:, 0],train_set_reduced[:, 1], c=colours)
+    # ax.set_title('PCA')
+    # ax.set_aspect('equal')
+    # plt.show()
 
     test_set_reduced = pca.transform(test_set)
     # test_set_reduced[:, 1] *= -1
