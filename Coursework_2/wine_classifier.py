@@ -151,10 +151,10 @@ def knn(train_set, train_labels, test_set, test_labels, k, **kwargs):
 
         knn_predictions.append(most_frequent(k_labels))
 
-    accuracy = calculate_accuracy(test_labels, knn_predictions)
-    matrix = calculate_confusion_matrix(test_labels, knn_predictions)
-    plot_matrix(matrix)
-    print(accuracy)
+    # accuracy = calculate_accuracy(test_labels, knn_predictions)
+    # matrix = calculate_confusion_matrix(test_labels, knn_predictions)
+    # plot_matrix(matrix)
+    # print(accuracy)
 
     # knn = KNeighborsClassifier(n_neighbors=k)
     # knn.fit(train_set_reduced,train_labels)
@@ -260,11 +260,11 @@ def alternative_classifier(train_set, train_labels, test_set, test_labels, **kwa
 
 
 
-    bayes_accuracy = calculate_accuracy(test_labels, bayes_predictions)
-    print(bayes_accuracy)
-
-    bayes_matrix = calculate_confusion_matrix(test_labels, bayes_predictions)
-    plot_matrix(bayes_matrix)
+    # bayes_accuracy = calculate_accuracy(test_labels, bayes_predictions)
+    # print(bayes_accuracy)
+    #
+    # bayes_matrix = calculate_confusion_matrix(test_labels, bayes_predictions)
+    # plot_matrix(bayes_matrix)
 
     # gnb = GaussianNB()
     # gnb.fit(train_set[:,[6,9]], train_labels)
@@ -316,10 +316,10 @@ def knn_three_features(train_set, train_labels, test_set, test_labels, k, **kwar
 
         predictions.append(most_frequent(klabels))
 
-    accuracy = calculate_accuracy(test_labels, predictions)
-    matrix = calculate_confusion_matrix(test_labels, predictions)
-    plot_matrix(matrix)
-    print(accuracy)
+    # accuracy = calculate_accuracy(test_labels, predictions)
+    # matrix = calculate_confusion_matrix(test_labels, predictions)
+    # plot_matrix(matrix)
+    # print(accuracy)
 
     # knn = KNeighborsClassifier(n_neighbors=k)
     # knn.fit(train_set_reduced,train_labels)
@@ -377,10 +377,10 @@ def knn_pca(train_set, train_labels, test_set, k, n_components=2, **kwargs):
 
         pca_predictions.append(most_frequent(k_labels))
 
-    accuracy = calculate_accuracy(test_labels, pca_predictions)
-    matrix = calculate_confusion_matrix(test_labels, pca_predictions)
-    plot_matrix(matrix)
-    print(accuracy)
+    # accuracy = calculate_accuracy(test_labels, pca_predictions)
+    # matrix = calculate_confusion_matrix(test_labels, pca_predictions)
+    # plot_matrix(matrix)
+    # print(accuracy)
 
     # knn = KNeighborsClassifier(n_neighbors=k)
     # knn.fit(train_set_reduced,train_labels)
