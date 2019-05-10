@@ -2,25 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68ae60-cd19-4b22-a151-fa87c9a19b75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../lab_5/.ipynb_checkpoints/labsheet5-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/iris_scatter_plots.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/iris_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/iris_test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/iris_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/iris_train.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/labsheet5.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_5/voronoi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/cm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/cm_iris.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/iris_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/iris_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/labsheet6.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_6/results_matrix.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_7/iris_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_7/iris_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_7/labsheets7.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_7/pca.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_7/pca_comparison.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/10vs13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/7 vs 10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/7vs13" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities.py">
           <provider selected="true" editor-type-id="text-editor" />
@@ -38,11 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wine_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-              <folding>
-                <element signature="e#246#283#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="889">
+              <caret line="164" column="30" lean-forward="true" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -60,7 +42,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="-1920" />
+    <option name="y" value="53" />
     <option name="width" value="1662" />
     <option name="height" value="1027" />
   </component>
@@ -70,6 +53,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -81,7 +65,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -104,14 +87,10 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1662" height="1027" extended-state="0" />
+    <frame x="-1920" y="53" width="1662" height="1027" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24984765" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -119,6 +98,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -130,11 +113,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wine_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#246#283#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="889">
+          <caret line="164" column="30" lean-forward="true" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="30" />
         </state>
       </provider>
     </entry>
